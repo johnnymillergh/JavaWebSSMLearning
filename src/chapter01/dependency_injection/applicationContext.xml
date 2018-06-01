@@ -6,11 +6,11 @@
 
     <!-- Beans definitions go here -->
 
-    <bean id="userDao" class="com.jm.dependency_injection.UserDaoImpl">
+    <bean id="userDao" class="chapter01.dependency_injection.UserDaoImpl">
         <!-- collaborators and configuration for this bean go here -->
     </bean>
 
-    <bean id="userService" class="com.jm.dependency_injection.UserServiceImpl">
+    <bean id="userService" class="chapter01.dependency_injection.UserServiceImpl">
         <!-- collaborators and configuration for this bean go here -->
         <property name="userDao" ref="userDao"></property>
     </bean>

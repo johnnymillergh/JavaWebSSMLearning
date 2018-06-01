@@ -1,4 +1,4 @@
-package com.jm.dependency_injection;
+package chapter01.dependency_injection;
 
 public class UserServiceImpl implements UserService {
     private UserDao userDao;
