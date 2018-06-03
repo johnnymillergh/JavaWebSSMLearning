@@ -20,6 +20,7 @@
       <root url="jar://$PROJECT_DIR$/lib/spring-messaging-4.3.16.RELEASE.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/spring-test-4.3.16.RELEASE.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/spring-orm-4.3.16.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/mysql-connector-java-5.1.45-bin.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
