@@ -38,4 +38,47 @@ public class Test {
                 "balance double)");
         System.out.println("Created table: account.");
     }
+
+    @org.junit.Test
+    public void addAccount() {
+        String xmlPath = "chapter04/jdbc/applicationContext.xml";
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext(xmlPath);
+
+        AccountDao accountDao = (AccountDao) applicationContext.getBean("accountDao");
+
+        Account account = new Account();
+        account.setUsername("Johnny Miller");
+        account.setBalance(1000.0);
+        int num = accountDao.addAccount(account);
+        if (num > 0) System.out.println("Add success");
+        else System.out.println("Add failure");
+    }
+
+    @org.junit.Test
+    public void updateAccount() {
+        String xmlPath = "chapter04/jdbc/applicationContext.xml";
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext(xmlPath);
+
+        AccountDao accountDao = (AccountDao) applicationContext.getBean("accountDao");
+
+        Account account = new Account();
+        account.setId(1);
+        account.setUsername("Johnny Miller");
+        account.setBalance(2000d);
+        int num = accountDao.updateAccount(account);
+        if (num > 0) System.out.println("Update success");
+        else System.out.println("Update failure");
+    }
+
+    @org.junit.Test
+    public void deleteAccount() {
+        String xmlPath = "chapter04/jdbc/applicationContext.xml";
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext(xmlPath);
+
+        AccountDao accountDao = (AccountDao) applicationContext.getBean("accountDao");
+
+        int num = accountDao.deleteAccount(1);
+        if (num > 0) System.out.println("Delete success");
+        else System.out.println("Delete failure");
+    }
 }
