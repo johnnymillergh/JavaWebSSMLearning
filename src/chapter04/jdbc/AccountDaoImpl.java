@@ -1,6 +1,10 @@
 package chapter04.jdbc;
 
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+
+import java.util.List;
 
 /**
  * User: Johnny Miller
@@ -35,5 +39,19 @@ public class AccountDaoImpl implements AccountDao {
     public int deleteAccount(int id) {
         String sql = "delete from account where id=?";
         return jdbcTemplate.update(sql, id);
+    }
+
+    @Override
+    public Account findAccountById(int id) {
+        String sql = "select * from account where id=?";
+        RowMapper<Account> rowMapper = new BeanPropertyRowMapper<>(Account.class);
+        return jdbcTemplate.queryForObject(sql, rowMapper, id);
+    }
+
+    @Override
+    public List<Account> findAllAccount() {
+        String sql = "select * from account";
+        RowMapper<Account> rowMapper = new BeanPropertyRowMapper<>(Account.class);
+        return jdbcTemplate.query(sql, rowMapper);
     }
 }

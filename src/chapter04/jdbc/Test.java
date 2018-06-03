@@ -4,6 +4,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.List;
+
 /**
  * User: Johnny Miller
  * Site: https://github.com/johnnymillergh
@@ -80,5 +82,27 @@ public class Test {
         int num = accountDao.deleteAccount(1);
         if (num > 0) System.out.println("Delete success");
         else System.out.println("Delete failure");
+    }
+
+    @org.junit.Test
+    public void findAccountByIdTest() {
+        String xmlPath = "chapter04/jdbc/applicationContext.xml";
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext(xmlPath);
+
+        AccountDao accountDao = (AccountDao) applicationContext.getBean("accountDao");
+
+        Account account = accountDao.findAccountById(2);
+        System.out.println(account);
+    }
+
+    @org.junit.Test
+    public void findAllAccountTest() {
+        String xmlPath = "chapter04/jdbc/applicationContext.xml";
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext(xmlPath);
+
+        AccountDao accountDao = (AccountDao) applicationContext.getBean("accountDao");
+
+        List<Account> allAccount = accountDao.findAllAccount();
+        System.out.println(allAccount);
     }
 }
