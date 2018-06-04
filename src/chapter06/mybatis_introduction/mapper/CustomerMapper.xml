@@ -12,4 +12,8 @@
         from t_customer
         where username like concat('%', #{username}, '%')
     </select>
+
+    <insert id="addCustomer" parameterType="chapter06.mybatis_introduction.po.Customer">
+        insert into t_customer (username, jobs, phone) value (#{username}, #{jobs}, #{phone})
+    </insert>
 </mapper>

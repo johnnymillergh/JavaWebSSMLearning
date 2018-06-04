@@ -44,4 +44,29 @@ public class MybatisTest {
         System.out.println(customers);
         sqlSession.close();
     }
+
+    @Test
+    public void addCustomerTest() throws Exception {
+        String resource = "chapter06/mybatis_introduction/mybatis-config.xml";
+        InputStream inputStream = Resources.getResourceAsStream(resource);
+
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        Customer customer = new Customer();
+        customer.setUsername("Marry");
+        customer.setJobs("Doctor");
+        customer.setPhone("12332324545");
+
+        int row = sqlSession.insert("chapter06.mybatis_introduction.mapper.CustomerMapper." +
+                "addCustomer", customer);
+
+        sqlSession.commit();
+
+        if (row > 0) {
+            System.out.println("Success: " + row);
+        } else {
+            System.out.println("Failure");
+        }
+    }
 }
