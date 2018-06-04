@@ -95,4 +95,24 @@ public class MybatisTest {
             System.out.println("Failure");
         }
     }
+
+    @Test
+    public void deleteCustomerTest() throws Exception {
+        String resource = "chapter06/mybatis_introduction/mybatis-config.xml";
+        InputStream inputStream = Resources.getResourceAsStream(resource);
+
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        int row = sqlSession.update("chapter06.mybatis_introduction.mapper.CustomerMapper." +
+                "deleteCustomer", 5);
+
+        sqlSession.commit();
+
+        if (row > 0) {
+            System.out.println("Success: " + row);
+        } else {
+            System.out.println("Failure");
+        }
+    }
 }
