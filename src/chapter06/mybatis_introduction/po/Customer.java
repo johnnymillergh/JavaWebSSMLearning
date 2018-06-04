@@ -1,4 +1,4 @@
-package chapter06.po;
+package chapter06.mybatis_introduction.po;
 
 /**
  * User: Johnny Miller

@@ -14,6 +14,6 @@
     </environments>
 
     <mappers>
-        <mapper resource="chapter06/mapper/CustomerMapper.xml"/>
+        <mapper resource="chapter06/mybatis_introduction/mapper/CustomerMapper.xml"/>
     </mappers>
 </configuration>
