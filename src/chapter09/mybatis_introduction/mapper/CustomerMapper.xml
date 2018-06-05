@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="chapter09.mybatis_introduction.mapper.CustomerMapper">
+    <select id="findCustomerById" parameterType="Integer" resultType="chapter09.mybatis_introduction.po.Customer">
+        select *
+        from t_customer
+        where id = #{id}
+    </select>
+
+    <select id="findCustomerByName" parameterType="String" resultType="chapter09.mybatis_introduction.po.Customer">
+        select *
+        from t_customer
+        where username like concat('%', #{username}, '%')
+    </select>
+
+    <insert id="addCustomer" parameterType="chapter09.mybatis_introduction.po.Customer">
+        insert into t_customer (username, jobs, phone) value (#{username}, #{jobs}, #{phone})
+    </insert>
+
+    <update id="updateCustomer" parameterType="chapter09.mybatis_introduction.po.Customer">
+        update t_customer
+        set username = #{username}, jobs = #{jobs}, phone = #{phone}
+        where id = #{id}
+    </update>
+
+    <delete id="deleteCustomer" parameterType="Integer">
+        delete from t_customer
+        where id = #{id}
+    </delete>
+
+    <select id="findCustomerByNameAndJobs" parameterType="chapter09.mybatis_introduction.po.Customer"
+            resultType="chapter09.mybatis_introduction.po.Customer">
+        select * from t_customer where 1=1
+        <if test="username != null and username != ''">
+            and username like concat('%',#{username},'%')
+        </if>
+        <if test="jobs != null and jobs != ''">
+            and jobs like concat('%',#{jobs},'%')
+        </if>
+    </select>
+
+    <select id="findCustomerByNameAndJobs2" parameterType="chapter09.mybatis_introduction.po.Customer"
+            resultType="chapter09.mybatis_introduction.po.Customer">
+        select * from t_customer
+        <where>
+            <if test="username != null and username != ''">
+                and username like concat('%',#{username},'%')
+            </if>
+
+            <if test="jobs != null and jobs != ''">
+                and jobs like concat('%',#{jobs},'%')
+            </if>
+        </where>
+    </select>
+
+    <select id="findCustomerByNameAndJobs3" parameterType="chapter09.mybatis_introduction.po.Customer"
+            resultType="chapter09.mybatis_introduction.po.Customer">
+        select * from t_customer
+        <trim prefix="where" prefixOverrides="and">
+            <if test="username != null and username != ''">
+                and username like concat('%',#{username},'%')
+            </if>
+
+            <if test="jobs != null and jobs != ''">
+                and jobs like concat('%',#{jobs},'%')
+            </if>
+        </trim>
+    </select>
+
+    <select id="findCustomerByNameOrJobs" parameterType="chapter09.mybatis_introduction.po.Customer"
+            resultType="chapter09.mybatis_introduction.po.Customer">
+        select * from t_customer where 1=1
+        <choose>
+            <when test="username != null and username != ''">
+                and username like concat('%',#{username},'%')
+            </when>
+
+            <when test="jobs != null and jobs != ''">
+                and jobs like concat('%',#{jobs},'%')
+            </when>
+
+            <otherwise>
+                and phone is not null
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="findCustomerByNameOrJobs2" parameterType="chapter09.mybatis_introduction.po.Customer"
+            resultType="chapter09.mybatis_introduction.po.Customer">
+        select * from t_customer
+        <where>
+            <choose>
+                <when test="username != null and username != ''">
+                    and username like concat('%',#{username},'%')
+                </when>
+
+                <when test="jobs != null and jobs != ''">
+                    and jobs like concat('%',#{jobs},'%')
+                </when>
+
+                <otherwise>
+                    and phone is not null
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <select id="findCustomerByIds" parameterType="List" resultType="chapter09.mybatis_introduction.po.Customer">
+        select * from t_customer where id in
+        <foreach collection="array" item="id" index="index" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </select>
+
+    <select id="findCustomerByName2" parameterType="chapter09.mybatis_introduction.po.Customer"
+            resultType="chapter09.mybatis_introduction.po.Customer">
+        <bind name="pattern_name" value="'%'+_parameter.getUsername()+'%'"/>
+        select * from t_customer
+        where username like #{pattern_name}
+    </select>
+</mapper>
