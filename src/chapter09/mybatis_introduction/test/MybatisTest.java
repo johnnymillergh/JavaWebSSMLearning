@@ -216,4 +216,14 @@ public class MybatisTest {
 
         System.out.println(person);
     }
+
+    @Test
+    public void findPersonById2Test() {
+        SqlSession sqlSession = MyBatisUtils.getSession();
+
+        Person person = sqlSession.selectOne("chapter09.mybatis_introduction.mapper.PersonMapper." +
+                "findPersonById2", 1);
+
+        System.out.println(person);
+    }
 }
