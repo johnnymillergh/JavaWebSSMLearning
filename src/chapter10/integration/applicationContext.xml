@@ -13,6 +13,9 @@
     http://www.springframework.org/schema/aop
     http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 
+    <!-- Turn on component scanning -->
+    <context:component-scan base-package="chapter10.integration.service"/>
+
     <!-- Read file db.properties -->
     <context:property-placeholder location="classpath:chapter10/db.properties"/>
 
@@ -44,13 +47,13 @@
     </bean>
 
     <!--<bean id="customerDao" class="chapter10.integration.dao.impl.CustomerDaoImpl">-->
-        <!--<property name="sqlSessionFactory" ref="sqlSessionFactory"/>-->
+    <!--<property name="sqlSessionFactory" ref="sqlSessionFactory"/>-->
     <!--</bean>-->
 
     <!-- Mapper proxy 1 (Based on MapperFactoryBean) -->
     <!--<bean id="customerMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">-->
-        <!--<property name="mapperInterface" value="chapter10.integration.mapper.CustomerMapper"/>-->
-        <!--<property name="sqlSessionFactory" ref="sqlSessionFactory"/>-->
+    <!--<property name="mapperInterface" value="chapter10.integration.mapper.CustomerMapper"/>-->
+    <!--<property name="sqlSessionFactory" ref="sqlSessionFactory"/>-->
     <!--</bean>-->
 
     <!-- Mapper proxy 2 (Based on MapperScannerConfigurer): automatically generate mapper beans-->

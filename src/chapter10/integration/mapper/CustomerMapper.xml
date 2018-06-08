@@ -16,4 +16,8 @@ TODO: Norms of Writing Mapper Interface and Mapper.xml
         from t_customer
         where id = #{id}
     </select>
+
+    <insert id="addCustomer" parameterType="chapter10.integration.po.Customer">
+        insert into t_customer (username, jobs, phone) value (#{username}, #{jobs}, #{phone})
+    </insert>
 </mapper>

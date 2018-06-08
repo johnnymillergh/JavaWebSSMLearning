@@ -4,4 +4,6 @@ import chapter10.integration.po.Customer;
 
 public interface CustomerMapper {
     Customer findCustomerById(Integer id);
+
+    void addCustomer(Customer customer);
 }
