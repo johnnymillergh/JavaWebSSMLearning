@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+TODO: Norms of Writing Mapper Interface and Mapper.xml
+(1) Filename of Mapper interface and Mapper.xml need to be same
+(2) Namespace of Mapper.xml and Filepath of Mapper interface need to be same and in the same package
+(3) Method name of Mapper interface should correspond with id of Mapper.xml
+(4) Parameter of method of mapper interface should be the same with parameterType in Mapper.xml
+(5) Return type of method of mapper interface should be the same with resultType in Mapper.xml
+-->
+
+<mapper namespace="chapter10.integration.mapper.CustomerMapper">
+    <select id="findCustomerById" parameterType="Integer" resultType="chapter10.integration.po.Customer">
+        select *
+        from t_customer
+        where id = #{id}
+    </select>
+</mapper>

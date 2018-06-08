@@ -7,7 +7,5 @@
         <package name="chapter10.integration"/>
     </typeAliases>
 
-    <mappers>
-        <mapper resource="chapter10/integration/po/CustomerMapper.xml"/>
-    </mappers>
+    <!-- If use MapperScannerConfigurer, then don't have to configure mappers -->
 </configuration>

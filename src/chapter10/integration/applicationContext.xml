@@ -43,7 +43,18 @@
         <property name="configLocation" value="classpath:chapter10/integration/mybatis-config.xml"/>
     </bean>
 
-    <bean id="customerDao" class="chapter10.integration.dao.impl.CustomerDaoImpl">
-        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    <!--<bean id="customerDao" class="chapter10.integration.dao.impl.CustomerDaoImpl">-->
+        <!--<property name="sqlSessionFactory" ref="sqlSessionFactory"/>-->
+    <!--</bean>-->
+
+    <!-- Mapper proxy 1 (Based on MapperFactoryBean) -->
+    <!--<bean id="customerMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">-->
+        <!--<property name="mapperInterface" value="chapter10.integration.mapper.CustomerMapper"/>-->
+        <!--<property name="sqlSessionFactory" ref="sqlSessionFactory"/>-->
+    <!--</bean>-->
+
+    <!-- Mapper proxy 2 (Based on MapperScannerConfigurer): automatically generate mapper beans-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="chapter10.integration.mapper"/>
     </bean>
 </beans>
